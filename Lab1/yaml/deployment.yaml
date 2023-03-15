@@ -24,7 +24,7 @@ spec:
               protocol: TCP
           imagePullPolicy: IfNotPresent
 # update with the iamge you build in part 1
-          image: 'quay.io/szigmon/appdev:v1'
+          image: 'quay.io/szigmon/appdev:v2'
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
