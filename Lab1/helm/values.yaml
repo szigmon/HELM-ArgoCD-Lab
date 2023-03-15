@@ -3,7 +3,7 @@ ReplicaNumber: 3
 containers:
   containerPort: 8080
   image: 'quay.io/szigmon/appdev'
-  tag: 'v2'
+  tag: 'chart_v1'
 
 service:
   servicePort: 8080
