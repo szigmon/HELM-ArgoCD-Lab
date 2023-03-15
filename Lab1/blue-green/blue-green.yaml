@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: blue-green-route
+  annotations:
+    haproxy.router.openshift.io/balance: random
+spec:
+  to:
+    kind: Service
+    name: user1-hello-chart-service
+    weight: 10
+  alternateBackends:
+  - kind: Service
+    name: user1-hello-world
+    weight: 20
