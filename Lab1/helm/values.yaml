@@ -1,0 +1,9 @@
+ReplicaNumber: 3
+
+containers:
+  containerPort: 8080
+  image: 'quay.io/szigmon/appdev:v2'
+  tag: 'base'
+
+service:
+  servicePort: 8080
