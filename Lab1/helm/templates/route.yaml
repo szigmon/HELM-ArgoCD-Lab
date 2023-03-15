@@ -1,13 +1,11 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-# set your user name
-  name:  {{ .Release.Name }}-route
+  name: {{ .Release.Name }}-route
 spec:
   to:
     kind: Service
-# set your user name
-    name:  {{ .Release.Name }}-service
+    name: {{ .Release.Name }}-service
     weight: 100
   port:
     targetPort: {{ .Values.service.servicePort }}
