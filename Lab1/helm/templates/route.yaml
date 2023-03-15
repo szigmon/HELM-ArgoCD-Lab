@@ -2,13 +2,13 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
 # set your user name
-  name:  user19-hello-world
+  name:  {{ .Release.Name }}-route
 spec:
   to:
     kind: Service
 # set your user name
-    name:  user19-hello-world
+    name:  {{ .Release.Name }}-service
     weight: 100
   port:
-    targetPort: 8080
+    targetPort: {{ .Values.service.servicePort }}
   wildcardPolicy: None
