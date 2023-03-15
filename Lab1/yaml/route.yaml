@@ -7,7 +7,7 @@ spec:
   to:
     kind: Service
 # set your user name
-    name:  user19git -hello-world
+    name:  user19-hello-world
     weight: 100
   port:
     targetPort: 8080
