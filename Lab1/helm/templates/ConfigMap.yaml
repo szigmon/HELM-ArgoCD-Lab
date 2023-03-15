@@ -1,0 +1,49 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: index.html
+immutable: false
+data:
+  index.html: |-
+    <html>
+    <head>
+      <title>HELM Application</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+      <div style="margin:100px;">
+       
+    <class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">HELM Application</a>
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/health/liveliness">Check liveliness</a>
+          </li>
+          <li>
+            <a href="/health/readiness">Check readiness</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+        <div class="jumbotron"  style="padding:40px;">
+          <h1>Hello, world!</h1>
+          <p>This is a simple hello World Web Page, this message will be modiifed.</p>
+          <p><a class="btn btn-primary btn-lg" href="/liveliness/400" role="button">Not Healty</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/health/liveliness" role="button">Check liveliness</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/health/readiness" role="button">Check readiness</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/readiness/400" role="button">Not Ready</a></p>
+        </div>
+        <div class="jumbotron"  style="padding:40px;">
+          <img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2018/05/openshift-featured.png?   itok=g0Ee8H1H" alt="OpenShift">
+          <img src="https://raw.githubusercontent.com/rhilconsultants/Application-Deployment-Workshop/main/Class%20artifacts/helm-icon-color.png" itok=g0Ee8H1H" alt="HELM">
+        </div>
+      </div>
+    </body>
+    </html>
