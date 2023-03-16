@@ -3,11 +3,6 @@ apiVersion: apps/v1
 metadata:
   name: {{ .Release.Name }}
 spec:
-  volumes:
-    - name: index-html
-      configMap:
-      name: index.html
-      defaultMode: 420
   replicas: {{ .Values.ReplicaNumber }}
   selector:
     matchLabels:
@@ -17,6 +12,11 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      volumes:
+        - name: index-html
+          configMap:
+          name: index.html
+          defaultMode: 420
       containers:
           volumeMounts:
           - name: index-html
