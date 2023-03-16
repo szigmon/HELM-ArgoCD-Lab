@@ -21,7 +21,7 @@ spec:
         volumeMounts:
         - name: index-html
           mountPath: /tmp/html
-      - resources: {}
+        - resources: {}
         terminationMessagePath: /dev/termination-log
         name: {{ .Release.Name }}
         ports:
