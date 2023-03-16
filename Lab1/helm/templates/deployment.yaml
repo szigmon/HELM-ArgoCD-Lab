@@ -29,27 +29,27 @@ spec:
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
           volumeMounts:
           - name: index-html
-            mountPath: /tmp/html
+            mountPath: {{ .Values.volume.mount.path }}
           readinessProbe:
             httpGet:
-              path: /health/readiness # this check the application url path
-              port: {{ .Values.containers.containerPort  }} # In which port the Application is listening
+              path: {{ .Values.probes.readiness.path }} # this check the application url path
+              port: {{ .Values.containers.containerPort }} # In which port the Application is listening
               scheme: HTTP
             initialDelaySeconds: 1 # the time is waiting befor testing the application path
-            timeoutSeconds: 1 # the time for timeout
-            periodSeconds: 10 # the abount of time to wait between checks
-            successThreshold: 1 # count to decalre seccessfull 
-            failureThreshold: 3 # count to decalre failure 
+            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }} # the time for timeout
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }} # the abount of time to wait between checks
+            successThreshold: {{ .Values.probes.readiness.successThreshold }} # count to decalre seccessfull 
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }} # count to decalre failure 
           livenessProbe:
             httpGet:
-              path: /health/liveliness
+              path: {{ .Values.probes.liveness.path }}
               port: {{ .Values.containers.containerPort }}
               scheme: HTTP
-            initialDelaySeconds: 1
-            timeoutSeconds: 1
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
+            initialDelaySeconds:  {{ .Values.probes.readiness.initialDelaySeconds }} # the time is waiting befor testing the application path
+            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }} # the time for timeout
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }} # the abount of time to wait between checks
+            successThreshold: {{ .Values.probes.readiness.successThreshold }} # count to decalre seccessfull 
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }} # count to decalre failure 
           env:
             - name: PORT
               value: {{ .Values.containers.containerPort | quote }}
