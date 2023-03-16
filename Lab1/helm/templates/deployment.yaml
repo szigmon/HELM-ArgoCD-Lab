@@ -18,9 +18,6 @@ spec:
             name: index.html
             defaultMode: 420
       containers:
-          volumeMounts:
-          - name: index-html
-            mountPath: /tmp/html
         - resources: {}
           terminationMessagePath: /dev/termination-log
           name: {{ .Release.Name }}
@@ -30,6 +27,9 @@ spec:
           imagePullPolicy: Always
           terminationMessagePolicy: File
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
+          volumeMounts:
+          - name: index-html
+            mountPath: /tmp/html
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
