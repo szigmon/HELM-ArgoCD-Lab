@@ -18,18 +18,18 @@ spec:
             name: index.html
             defaultMode: 420
       containers:
-          volumeMounts:
-          - name: index-html
-            mountPath: /tmp/html
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          name: {{ .Release.Name }}
-          ports:
-            - containerPort: {{ .Values.containers.containerPort }}
-              protocol: TCP
-          imagePullPolicy: Always
-          terminationMessagePolicy: File
-          image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
+        volumeMounts:
+        - name: index-html
+          mountPath: /tmp/html
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        name: {{ .Release.Name }}
+        ports:
+          - containerPort: {{ .Values.containers.containerPort }}
+            protocol: TCP
+        imagePullPolicy: Always
+        terminationMessagePolicy: File
+        image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
