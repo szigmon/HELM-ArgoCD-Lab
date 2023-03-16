@@ -12,56 +12,18 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
-      volumes:
-        - name: index-html
-          configMap:
-            name: index.html
-            defaultMode: 420
       containers:
-spec:
-  volumes:
-    - name: index-html
-      configMap:
-        name: index.html
-        defaultMode: 420
-  containers:
-    - name: {{ .Release.Name }}
-      image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
-      ports:
-        - containerPort: {{ .Values.containers.containerPort }}
-          protocol: TCP
-      volumeMounts:
-        - name: index-html
-          mountPath: /tmp/html
-      resources: {}
-      terminationMessagePath: /dev/termination-log
-      imagePullPolicy: Always
-      terminationMessagePolicy: File
-      readinessProbe:
-        httpGet:
-          path: /health/readiness
-          port: {{ .Values.containers.containerPort }}
-          scheme: HTTP
-        initialDelaySeconds: 1
-        timeoutSeconds: 1
-        periodSeconds: 10
-        successThreshold: 1
-        failureThreshold: 3
-      livenessProbe:
-        httpGet:
-          path: /health/liveliness
-          port: {{ .Values.containers.containerPort }}
-          scheme: HTTP
-        initialDelaySeconds: 1
-        timeoutSeconds: 1
-        periodSeconds: 10
-        successThreshold: 1
-        failureThreshold: 3
-      env:
-        - name: PORT
-          value: {{ .Values.containers.containerPort | quote }}
-  restartPolicy: Always
-  terminationGracePeriodSeconds: 30
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: {{ .Release.Name }}
+          ports:
+            - containerPort: {{ .Values.containers.containerPort }}
+              protocol: TCP
+          imagePullPolicy: Always
+          terminationMessagePolicy: File
+          image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
   strategy:
     type: RollingUpdate
     rollingUpdate:
